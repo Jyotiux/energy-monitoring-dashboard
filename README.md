@@ -35,9 +35,9 @@ Node-RED → InfluxDB 3.0 → Grafana
 
 ---
 
-## Dashboard Preview
+## Dashboard 
 
-![Dashboard]<img width="1913" height="955" alt="image" src="https://github.com/user-attachments/assets/f0480439-dee0-46c9-80bd-42eb3773c873" />
+![Dashboard](grafana/dashboard.png)
 
 
 ---
