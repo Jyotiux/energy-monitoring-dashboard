@@ -1,0 +1,108 @@
+[
+    {
+        "id": "49469cae38502f9c",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "dc851a25a20f73f4",
+        "type": "inject",
+        "z": "49469cae38502f9c",
+        "name": "",
+        "props": [],
+        "repeat": "5",
+        "crontab": "",
+        "once": false,
+        "onceDelay": "5",
+        "topic": "",
+        "x": 190,
+        "y": 160,
+        "wires": [
+            [
+                "47299beb85afb41f"
+            ]
+        ]
+    },
+    {
+        "id": "47299beb85afb41f",
+        "type": "function",
+        "z": "49469cae38502f9c",
+        "name": "function1",
+        "func": "const voltage = 220 + Math.random() * 10;\nconst current = 2 + Math.random();\nconst power = voltage * current;\n\nmsg.payload =\n    `street_light,location=road1 voltage=${voltage},current=${current},power=${power}`;\n\nmsg.headers = {\n    \"Authorization\": \"Bearer apiv3_UtYMrMzKbDqYhk-2SyFqtVuabr4WKf9mzRVIl-5sVaShYNfdCAQGawBao10kCr3G6pKrC2RapxgmfRLAzTsnSw\",\n    \"Content-Type\": \"text/plain\"\n};\n\n// msg.method = \"POST\";\n// msg.url = \"http://localhost:8181/api/v3/write_lp?db=iot_db\";\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 420,
+        "y": 160,
+        "wires": [
+            [
+                "99f0b1f1a29e22c1"
+            ]
+        ]
+    },
+    {
+        "id": "99f0b1f1a29e22c1",
+        "type": "http request",
+        "z": "49469cae38502f9c",
+        "name": "",
+        "method": "POST",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://localhost:8181/api/v3/write_lp?db=iot_db",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "insecureHTTPParser": false,
+        "authType": "",
+        "senderr": false,
+        "headers": [],
+        "x": 650,
+        "y": 160,
+        "wires": [
+            [
+                "010c4d0f5dcbb6a2",
+                "fbd20085cd012b30"
+            ]
+        ]
+    },
+    {
+        "id": "010c4d0f5dcbb6a2",
+        "type": "debug",
+        "z": "49469cae38502f9c",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 840,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "fbd20085cd012b30",
+        "type": "debug",
+        "z": "49469cae38502f9c",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "statusCode",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 820,
+        "y": 240,
+        "wires": []
+    }
+]
